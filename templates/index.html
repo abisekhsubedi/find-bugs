@@ -1,0 +1,27 @@
+﻿{% extends "base.html" %}
+{% block content %}
+
+    <div class="jumbotron">
+        <h1>View our products!</h1>
+        <p>View our unique range of products.</p>
+        <p>Use discount 20OFF for 25% off your cart</p>
+    </div>
+    <div class="container">
+        <div class="row">
+          {% autoescape false %}
+        {% for product in products %}
+        <div class="card" style="width: 18rem; margin-right: 10px">
+            <img src="{{product.image}}" class="card-img-top" style="height: auto; width: auto; max-height: 150px;">
+            <div class="card-body">
+              <h5 class="card-title">{{product.name}}</h5>
+              <p class="card-text">{{product.description}}.</p>
+              <p class="card-text">${{product.price}}.</p>
+              <a href="/item/{{product.id}}" class="btn btn-primary">View</a>
+            </div>
+          </div>
+            {% endfor %}
+        </div>
+        {% endautoescape %}
+    </div>
+    
+{% endblock %}

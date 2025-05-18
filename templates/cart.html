@@ -1,0 +1,46 @@
+﻿{% extends "base.html" %} {% block content %}
+<div class="jumbotron">
+    <h1>Checkout</h1>
+  
+      <div class="row" style="align-items: center;">
+        <div class="col">
+          <div class="card" style="text-align: center; align-items: center; display: flex;">
+           
+            <div class="card-body">
+              <table class="table" id="cart-table" style="text-align: left">
+                <!-- 2vw = 2 times view width (dynmaic text size) -->
+                <thead>
+                  <tr>
+                    <!-- <th scope="col">#</th> -->
+                    <th scope="col">Item</th>
+                    <th scope="col">Qty</th>
+                    <th scope="col">Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for item in cart.items %}
+                  <tr>
+                    <td>{{ item.item.name }}</td>
+                    <td>{{ item.qty }}</td>
+                    <td>${{ item.price * item.qty }}</td>
+                  
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              Total Price: ${{cart.total_price}}<br/>
+              <form method="POST" action="/cart/{{cart.id}}/discount/25OFF">
+                <input type="text" placeholder="DISCOUNT CODE" />
+                <button type="submit" class="btn btn-primary">Apply</button>
+              </form>
+              <form method="POST" action="/cart/{{cart.id}}/purchase">
+                <button type="submit" class="btn btn-primary">Checkout</button>
+              </form>
+            </div>
+          </div>
+    
+        </div>
+      </div>
+  </div>
+</div>
+{% endblock %}

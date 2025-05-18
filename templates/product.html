@@ -1,0 +1,25 @@
+﻿{% extends "base.html" %} {% block content %}
+<div class="jumbotron">
+    <form method="POST">
+      {{ form.hidden_tag()}}
+      <div class="row" style="align-items: center;">
+        <div class="col">
+          <div class="card" style="text-align: center; align-items: center; display: flex;">
+            <img src="{{product.image}}" class="card-img-top" style="height: auto; width: auto; max-height: 150px; max-width: 300px;">
+            <div class="card-body">
+              <h5 class="card-title">{{product.name}}</h5>
+              <p class="card-text">{{product.description}}.</p>
+              <p class="card-text">${{product.price}}.</p>
+              {{ form.item_id() }}
+              {{form.qty.label}}
+              {{form.qty()}}
+              {{ form.submit(class="btn btn-primary") }}
+            </div>
+          </div>
+    
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

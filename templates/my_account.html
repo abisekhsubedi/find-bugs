@@ -1,0 +1,54 @@
+﻿{% extends "base.html" %} {% block content %}
+<div class="jumbotron">
+  {% if session['username'] %}
+
+  <h1>My Accounts</h1>
+  <br />
+  <h4>
+    Your Account ID {{ account.id }} has a balance of $ {{ account.store_credit }}
+  </h4>
+  <hr />
+
+ 
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        </div>
+        </div>
+    <div class="row">
+      <div class="col">
+        <h4>Your Orders</h4>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for cart in carts %}
+            <tr>
+              <td>{{ cart.id }}</td>
+              <td>{{ cart.total_price }}</td>             
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+  
+
+  {% else %}
+  <h1>Please log in!</h1>
+  <a href="{{ url_for('login') }}">Login</a>
+  {% endif %}
+</div>
+<style>
+  @media only screen and (max-width: 576px){
+    body #transactions-table{
+      font-size:3vw; /* 2vw = 2 times view width (dynmaic text size)  */
+    }
+</style>
+{% endblock %}
